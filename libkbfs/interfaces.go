@@ -1637,7 +1637,7 @@ type Config interface {
 	diskBlockCacheSetter
 	clockGetter
 	diskLimiterGetter
-	isSyncedTlfGetter
+	syncedTlfGetterSetter
 	Tracer
 	KBFSOps() KBFSOps
 	SetKBFSOps(KBFSOps)
