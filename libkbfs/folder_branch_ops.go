@@ -1328,7 +1328,7 @@ func (fbo *folderBranchOps) maybeUnembedAndPutBlocks(ctx context.Context,
 	}
 
 	chargedTo, err := chargedToForTLF(
-		ctx, fbo.config.KBPKI(), md.GetTlfHandle())
+		ctx, fbo.config.KBPKI(), fbo.config.KBPKI(), md.GetTlfHandle())
 	if err != nil {
 		return nil, err
 	}
@@ -1364,7 +1364,8 @@ func (fbo *folderBranchOps) maybeUnembedAndPutBlocks(ctx context.Context,
 func ResetRootBlock(ctx context.Context, config Config,
 	rmd *RootMetadata) (Block, BlockInfo, ReadyBlockData, error) {
 	newDblock := NewDirBlock()
-	chargedTo, err := chargedToForTLF(ctx, config.KBPKI(), rmd.GetTlfHandle())
+	chargedTo, err := chargedToForTLF(
+		ctx, config.KBPKI(), config.KBPKI(), rmd.GetTlfHandle())
 	if err != nil {
 		return nil, BlockInfo{}, ReadyBlockData{}, err
 	}
@@ -2622,7 +2623,7 @@ func (fbo *folderBranchOps) createEntryLocked(
 	}
 
 	chargedTo, err := chargedToForTLF(
-		ctx, fbo.config.KBPKI(), md.GetTlfHandle())
+		ctx, fbo.config.KBPKI(), fbo.config.KBPKI(), md.GetTlfHandle())
 	if err != nil {
 		return nil, DirEntry{}, err
 	}
